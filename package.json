@@ -1,0 +1,27 @@
+{
+  "name": "hunter_vladilen_node",
+  "version": "1.0.0",
+  "description": "1.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasyl1312/hunter_vladilen_node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vasyl1312/hunter_vladilen_node/issues"
+  },
+  "homepage": "https://github.com/vasyl1312/hunter_vladilen_node#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
