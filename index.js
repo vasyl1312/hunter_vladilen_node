@@ -1,14 +1,27 @@
 const express = require('express')
 const path = require('path')
+const exhbs = require('express-handlebars')
+
 const app = express()
 
+const hbs = exhbs.create({
+  defaultLayout: 'main',
+  extname: 'hbs',
+})
+
+//щоб зареєструвати як движок для html-сторінок
+app.engine('hbs', hbs.engine)
+//а тут ми цей движок використовуєм
+app.set('view engine', 'hbs')
+app.set('views', 'views')
+
 app.get('/', (req, res) => {
-  //який файл надсилаєм\відкриваєм
-  res.sendFile(path.join(__dirname, 'views', 'index.html'))
+  //тепер можна просто рендерити сторінки
+  res.render('index')
 })
 
 app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'about.html'))
+  res.render('about')
 })
 
 const PORT = process.env.PORT || 3000
