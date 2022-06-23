@@ -1,20 +1,21 @@
 const { Router } = require('express')
+const Course = require('../models/course')
 const router = Router()
 
 router.get('/', (req, res) => {
   res.render('add', {
     title: 'Додати',
-    //для підсвітки коли на цій сторінці
-    isAdd: true,
+    isAdd: true, //для підсвітки коли на цій сторінці
   })
 })
 
 //щоб проробити результат після надсилання нового курсу
-router.post('/', (req, res) => {
-  console.log(req.body)
+router.post('/', async (req, res) => {
+  const course = new Course(req.body.title, req.body.price, req.body.img)
 
-  //коли додали новий курс - редірект на всі курси
-  res.redirect('/courses')
+  await course.save()
+
+  res.redirect('/courses') //коли додали новий курс - редірект на всі курси
 })
 
 module.exports = router

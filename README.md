@@ -10,3 +10,4 @@
    5. Rendering, work with pages courses and add.hbs, title for all pages, active page(add lighting)
    6. Register routes, push each routes to other .js file
    7. Update form, when input new course(add page)
+   8. Create model, save new course to database

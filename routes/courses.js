@@ -4,8 +4,7 @@ const router = Router()
 router.get('/', (req, res) => {
   res.render('courses', {
     title: 'Курси',
-    //для підсвітки коли на цій сторінці
-    isCourses: true,
+    isCourses: true, //для підсвітки коли на цій сторінці
   })
 })
 
