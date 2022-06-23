@@ -11,3 +11,4 @@
    6. Register routes, push each routes to other .js file
    7. Update form, when input new course(add page)
    8. Create model, save new course to database
+   9. Output the list of courses in page(Courses)
