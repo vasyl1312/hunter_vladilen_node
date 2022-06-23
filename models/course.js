@@ -41,6 +41,12 @@ class Course {
       })
     })
   }
+
+  //щоб дістати товари по id
+  static async getById(id) {
+    const courses = await Course.getAll() //отримуємо усі курси
+    return courses.find((c) => c.id === id) //повертаємо один курс по id
+  }
 }
 
 module.exports = Course

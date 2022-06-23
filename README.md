@@ -13,3 +13,4 @@
    8. Create model, save new course to database
    9. Output the list of courses in page(Courses)
    10. Connect client scripts, style for price
+   11. Button 'Open course', find course by id, open course in new page
