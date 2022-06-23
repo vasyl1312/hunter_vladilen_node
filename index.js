@@ -14,6 +14,8 @@ app.engine('hbs', hbs.engine)
 //а тут ми цей движок використовуєм
 app.set('view engine', 'hbs')
 app.set('views', 'views')
+//щоб зробити папку статичною і її експрес бачив
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
   //тепер можна просто рендерити сторінки
