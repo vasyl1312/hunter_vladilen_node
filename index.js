@@ -20,6 +20,7 @@ app.set('views', 'views')
 
 //щоб зробити папку статичною і її експрес бачив
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
 //щоб використовувати усі наші роути
 app.use('/', homeRoutes)
 app.use('/add', addRoutes)

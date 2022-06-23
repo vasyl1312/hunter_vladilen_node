@@ -9,4 +9,12 @@ router.get('/', (req, res) => {
   })
 })
 
+//щоб проробити результат після надсилання нового курсу
+router.post('/', (req, res) => {
+  console.log(req.body)
+
+  //коли додали новий курс - редірект на всі курси
+  res.redirect('/courses')
+})
+
 module.exports = router
