@@ -14,6 +14,23 @@ class Course {
     return { title: this.title, price: this.price, img: this.img, id: this.id }
   }
 
+  static async update(course) {
+    const courses = await Course.getAll()
+    const idx = courses.findIndex((c) => c.id === course.id) //шукаємо індекс курсу якого хочемо оновити
+    courses[idx] = course
+    //і треба зберегти новий курс
+    return new Promise((resolve, reject) => {
+      fs.writeFile(
+        path.join(__dirname, '..', 'data', 'courses.json'),
+        JSON.stringify(courses),
+        (err) => {
+          if (err) reject(err)
+          else resolve()
+        }
+      )
+    })
+  }
+
   //береобразуємо у формат json і зберіг у окремий файл,async щоб почекати данi з бази
   async save() {
     const courses = await Course.getAll()
