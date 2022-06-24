@@ -17,3 +17,4 @@ Part `Express`
 11. Button 'Open course', find course by id, open course in new page
 12. Edit Courses Page
 13. Add cart for buying courses
+14. Cart model, count all price, add product to cart and check, that this product is already in
