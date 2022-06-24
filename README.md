@@ -16,3 +16,4 @@ Part `Express`
 10. Connect client scripts, style for price
 11. Button 'Open course', find course by id, open course in new page
 12. Edit Courses Page
+13. Add cart for buying courses

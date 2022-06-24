@@ -20,6 +20,12 @@
         <li> <a href='/add'>Додати курс</a> </li>
       {{/if}}
 
+      {{#if isCard}}
+        <li class='active'> <a href='/card'>Кошик</a> </li>
+      {{else}}
+        <li> <a href='/card'>Кошик</a> </li>
+      {{/if}}
+
     </ul>
   </div>
 </nav>
