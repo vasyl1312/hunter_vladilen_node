@@ -31,6 +31,31 @@ class Card {
     })
   }
 
+  static async remove(id) {
+    const card = await Card.fetch()
+
+    const idx = card.courses.findIndex((c) => c.id === id)
+    const course = card.courses[idx]
+
+    if (course.count === 1) {
+      //видаляємо якщо в кошику тільки 1 к-ть виду курсу
+      card.courses = card.courses.filter((c) => c.id !== id)
+    } else {
+      //якщо там mern 2-то зменшуємо кількість
+      card.courses[idx].count--
+    }
+
+    card.price -= course.price //перераховуємо ціну
+
+    return new Promise((resolve, reject) => {
+      //тепер все назад вертаємо в json
+      fs.writeFile(p, JSON.stringify(card), (err) => {
+        if (err) reject(err)
+        else resolve(card)
+      })
+    })
+  }
+
   //отримує дані із корзини
   static async fetch() {
     return new Promise((resolve, reject) => {
