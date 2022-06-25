@@ -20,3 +20,4 @@ Part `Express`
 14. Cart model, count all price, add product to cart and check, that this product is already in
 15. Output data in the cart, check when cart is empty
 16. Work with async request(delete course from card)
+17. Some actions with card
