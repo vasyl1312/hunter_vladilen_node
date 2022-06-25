@@ -21,3 +21,7 @@ Part `Express`
 15. Output data in the cart, check when cart is empty
 16. Work with async request(delete course from card)
 17. Some actions with card
+
+Part `MongoDb`
+
+1. Connect to MongoDB, instantiating mongoose
