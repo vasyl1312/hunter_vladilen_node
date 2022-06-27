@@ -10,8 +10,12 @@ const coursesRoutes = require('./routes/courses')
 const app = express()
 
 const hbs = exhbs.create({
-  defaultLayout: 'main',
   extname: 'hbs',
+  defaultLayout: 'main',
+  runtimeOptions: {
+    allowProtoPropertiesByDefault: true,
+    allowProtoMethodsByDefault: true,
+  },
 })
 
 app.engine('hbs', hbs.engine) //щоб зареєструвати як движок для html-сторінок
