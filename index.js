@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 3000
 
 async function start() {
   try {
-    const url = `mongodb+srv://vasyl:Vasyl2002@cluster0.llaredl.mongodb.net/?retryWrites=true&w=majority`
+    const url = `mongodb+srv://vasyl:Vasyl2002@cluster0.llaredl.mongodb.net/shop`
     await mongoose.connect(url)
     app.listen(PORT, () => {
       console.log(`Server has been listening on port ${PORT}`)

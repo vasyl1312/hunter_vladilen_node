@@ -25,3 +25,4 @@ Part `Express`
 Part `MongoDb`
 
 1. Connect to MongoDB, instantiating mongoose
+2. Create model for mongo, edit routes for this

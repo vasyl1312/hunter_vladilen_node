@@ -11,11 +11,18 @@ router.get('/', (req, res) => {
 
 //щоб проробити результат після надсилання нового курсу
 router.post('/', async (req, res) => {
-  const course = new Course(req.body.title, req.body.price, req.body.img)
+  const course = new Course({
+    title: req.body.title,
+    price: req.body.price,
+    img: req.body.img,
+  })
 
-  await course.save()
-
-  res.redirect('/courses') //коли додали новий курс - редірект на всі курси
+  try {
+    await course.save()
+    res.redirect('/courses') //коли додали новий курс - редірект на всі курси
+  } catch (e) {
+    console.log(e)
+  }
 })
 
 module.exports = router
