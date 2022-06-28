@@ -28,3 +28,4 @@ Part `MongoDb`
 2. Create model for mongo, edit routes for this
 3. Update model, solve handlebars errors
 4. Delete course
+5. Model for user
