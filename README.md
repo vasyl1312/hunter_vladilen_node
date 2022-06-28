@@ -27,3 +27,4 @@ Part `MongoDb`
 1. Connect to MongoDB, instantiating mongoose
 2. Create model for mongo, edit routes for this
 3. Update model, solve handlebars errors
+4. Delete course
