@@ -30,3 +30,4 @@ Part `MongoDb`
 4. Delete course
 5. Model for user
 6. Add user,for future add new course = remember user id
+7. Update card, delete db from project, new course remember user id

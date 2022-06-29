@@ -4,14 +4,36 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   name: { type: String, required: true },
   cart: {
-    //щоб для кожного користувача зберігаласб його корзина
+    //щоб для кожного користувача зберігалась його корзина
     items: [
       {
         count: { type: Number, required: true, default: 1 },
-        CourseId: { type: Schema.Types.ObjectId, ref: 'Course', required: true },
+        courseId: { type: Schema.Types.ObjectId, ref: 'Course', required: true },
       },
     ],
   },
 })
+
+//розширюємо схему одразу тут щоб додти товар в кошик, func а не стрілкова бо треба this
+userSchema.methods.addToCart = function (course) {
+  const items = [...this.cart.items] //щоб в нас назви не повтор ми розвертаємо масив і записуєм копію
+  //треба знайти id масиву з яким працюємо
+  const idx = items.findIndex((c) => {
+    return c.courseId.toString() === course._id.toString() //переводимо об'єкти в string
+  })
+  //якщо курс є то ++ к-ть
+  if (idx >= 0) {
+    items[idx].count++
+  } else {
+    //додаємо елем в кошик якщо його там нема
+    items.push({
+      courseId: course._id,
+      count: 1,
+    })
+  }
+
+  this.cart = { items }
+  return this.save()
+}
 
 module.exports = model('User', userSchema)
