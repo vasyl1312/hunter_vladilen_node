@@ -25,6 +25,10 @@
     </table>
 
     <p><strong>Ціна:</strong><span class='price'>{{price}}</span></p>
+
+    <form action='/orders' method='POST'>
+      <button type='submit' class='btn'>Замовити</button>
+    </form>
   {{else}}
     <p>Кошик пустий</p>
   {{/if}}

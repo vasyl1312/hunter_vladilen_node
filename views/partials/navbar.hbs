@@ -26,6 +26,11 @@
         <li> <a href='/card'>Кошик</a> </li>
       {{/if}}
 
+      {{#if isOrder}}
+        <li class='active'> <a href='/orders'>Замовлення</a> </li>
+      {{else}}
+        <li> <a href='/orders'>Замовлення</a> </li>
+      {{/if}}
     </ul>
   </div>
 </nav>
