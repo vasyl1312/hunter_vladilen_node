@@ -32,3 +32,4 @@ Part `MongoDb`
 6. Add user,for future add new course = remember user id
 7. Update card, delete db from project, new course remember user id
 8. View in the cart page, count total price(difficult actions)
+9. Delete course

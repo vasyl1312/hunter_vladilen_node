@@ -36,4 +36,18 @@ userSchema.methods.addToCart = function (course) {
   return this.save()
 }
 
+userSchema.methods.removeFromCard = function (id) {
+  let items = [...this.cart.items]
+  const idx = items.findIndex((c) => c.courseId.toString() === id.toString())
+  //якщо курсів > 1 то -- к-ть, інакше видалити
+  if (items[idx].count === 1) {
+    items = items.filter((c) => c.courseId.toString() !== id.toString()) //тут просто по filter видал курс по id
+  } else {
+    items[idx].count--
+  }
+
+  this.cart = { items }
+  return this.save()
+}
+
 module.exports = model('User', userSchema)
