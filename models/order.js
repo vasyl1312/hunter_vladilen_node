@@ -3,7 +3,7 @@ const orderSchema = new Schema({
   //в моделі прописуємо які курси хочемо купити і користувача який купляє i дату
   courses: [
     {
-      courses: {
+      course: {
         type: Object,
         required: true,
       },

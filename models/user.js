@@ -50,4 +50,10 @@ userSchema.methods.removeFromCard = function (id) {
   return this.save()
 }
 
+//метод для чищення кошику піля замовлення
+userSchema.methods.clearCart = function () {
+  this.cart = { items: [] }
+  return this.save()
+}
+
 module.exports = model('User', userSchema)

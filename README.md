@@ -35,3 +35,4 @@ Part `MongoDb`
 9. Delete course
 10. Work with _id-bugs(do without _) in remove-method
 11. Prepare page to ordering, routing, btn, model for order
+12. Work with ordering, remember user id, count and course, after clear cart, show order in page
