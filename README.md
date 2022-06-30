@@ -33,3 +33,4 @@ Part `MongoDb`
 7. Update card, delete db from project, new course remember user id
 8. View in the cart page, count total price(difficult actions)
 9. Delete course
+10. Work with _id-bugs(do without _) in remove-method
