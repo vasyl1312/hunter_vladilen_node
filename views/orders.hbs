@@ -11,20 +11,19 @@
               <small> {{_id}}</small>
             </span>
             <p class='date'>{{date}}</p>
-            <p><em>{{user.userId.name}}</em>({{user.userId.email}})</p>
+            <p>CLIENT: <em>{{user.userId.name}}</em></p>
+            <p>EMAIL: <em>({{user.userId.email}})</em></p>
 
             <ol>
               {{#each courses}}
                 <li>
                   {{course.title}}
-                  (x<strong>{{count}}</strong>)
+                  (x<strong>{{course.count}}</strong>)
+                  <p>Ціна:<span class='price'>{{course.price}}</span></p>
                 </li>
               {{/each}}
             </ol>
-
             <hr />
-
-            <p>Ціна:<span class='price'>{{price}}</span></p>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ const toCurrency = (price) => {
 }
 
 const toDate = (date) => {
+  date = Date.now()
   return new Intl.DateTimeFormat('en-GB', {
     day: '2-digit',
     month: 'long',
@@ -21,7 +22,7 @@ document.querySelectorAll('.price').forEach((node) => {
   node.textContent = toCurrency(node.textContent)
 })
 
-//те саме для ціни
+//те саме для дати
 document.querySelectorAll('.date').forEach((node) => {
   node.textContent = toDate(node.textContent)
 })
