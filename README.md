@@ -37,3 +37,7 @@ Part `MongoDb`
 11. Prepare page to ordering, routing, btn, model for order
 12. Work with ordering, remember user id, count and course, after clear cart, show order in page
 13. Output order (layouts), logic to show and each order to each user, have a bugs with count, date, price
+
+Part `Authorization and session`
+
+1. Login page(materialize), routes
