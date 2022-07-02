@@ -14,29 +14,35 @@
         <li> <a href='/courses'>Курси</a> </li>
       {{/if}}
 
-      {{#if isAdd}}
-        <li class='active'> <a href='/add'>Додати курс</a> </li>
+      {{#if isAuth}}
+        {{! перевірка якщо зареєстрований користувач то hide деякі сторінки }}
+        {{#if isAdd}}
+          <li class='active'> <a href='/add'>Додати курс</a> </li>
+        {{else}}
+          <li> <a href='/add'>Додати курс</a> </li>
+        {{/if}}
+
+        {{#if isCard}}
+          <li class='active'> <a href='/card'>Кошик</a> </li>
+        {{else}}
+          <li> <a href='/card'>Кошик</a> </li>
+        {{/if}}
+
+        {{#if isOrder}}
+          <li class='active'> <a href='/orders'>Замовлення</a> </li>
+        {{else}}
+          <li> <a href='/orders'>Замовлення</a> </li>
+        {{/if}}
+
+        <li><a href='/auth/logout'>Вийти</a>li>
       {{else}}
-        <li> <a href='/add'>Додати курс</a> </li>
+        {{#if isLogin}}
+          <li class='active'> <a href='/auth/login#login'>Увійти</a> </li>
+        {{else}}
+          <li> <a href='/auth/login#login'>Увійти</a> </li>
+        {{/if}}
       {{/if}}
 
-      {{#if isCard}}
-        <li class='active'> <a href='/card'>Кошик</a> </li>
-      {{else}}
-        <li> <a href='/card'>Кошик</a> </li>
-      {{/if}}
-
-      {{#if isOrder}}
-        <li class='active'> <a href='/orders'>Замовлення</a> </li>
-      {{else}}
-        <li> <a href='/orders'>Замовлення</a> </li>
-      {{/if}}
-
-      {{#if isLogin}}
-        <li class='active'> <a href='/auth/login#login'>Увійти</a> </li>
-      {{else}}
-        <li> <a href='/auth/login#login'>Увійти</a> </li>
-      {{/if}}
     </ul>
   </div>
 </nav>

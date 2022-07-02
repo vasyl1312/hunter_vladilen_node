@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
 const exhbs = require('express-handlebars')
+const session = require('express-session')
 
 const homeRoutes = require('./routes/home')
 const addRoutes = require('./routes/add')
@@ -10,6 +11,7 @@ const coursesRoutes = require('./routes/courses')
 const ordersRoutes = require('./routes/orders')
 const authRoutes = require('./routes/auth')
 const User = require('./models/user')
+const varMiddlware = require('./middleware/variables')
 
 const app = express()
 
@@ -38,6 +40,8 @@ app.use(async (req, res, next) => {
 
 app.use(express.static(path.join(__dirname, 'public'))) //щоб зробити папку статичною і її експрес бачив
 app.use(express.urlencoded({ extended: true }))
+app.use(session({ secret: 'some secret value', resave: false, saveUninitialized: false }))
+app.use(varMiddlware)
 
 app.use('/', homeRoutes) //щоб використовувати усі наші роути
 app.use('/add', addRoutes)
