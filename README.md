@@ -42,6 +42,7 @@ Part `Authorization and session`
 
 1. Login page(materialize), routes
 2. Add session, hidding pages for non- auth user and show for auth
+3. Save session, delete our temporary user
 
 Part `For future pet-project`
 

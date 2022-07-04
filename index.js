@@ -28,16 +28,6 @@ app.engine('hbs', hbs.engine) //щоб зареєструвати як движ�
 app.set('view engine', 'hbs') //а тут ми цей движок використовуєм
 app.set('views', 'views')
 
-app.use(async (req, res, next) => {
-  try {
-    const user = await User.findById('62bc2d54befb8d1927cb5214')
-    req.user = user
-    next()
-  } catch (e) {
-    console.log(e)
-  }
-})
-
 app.use(express.static(path.join(__dirname, 'public'))) //щоб зробити папку статичною і її експрес бачив
 app.use(express.urlencoded({ extended: true }))
 app.use(session({ secret: 'some secret value', resave: false, saveUninitialized: false }))
@@ -57,16 +47,16 @@ async function start() {
     const url = `mongodb+srv://vasyl:Vasyl2002@cluster0.llaredl.mongodb.net/shop`
     await mongoose.connect(url)
 
-    const candidate = await User.findOne()
-    //якщо в нас нема користувачів то створюємо
-    if (!candidate) {
-      const user = new User({
-        email: 'vasylhryts@knu.ua',
-        name: 'vasyl',
-        cart: { items: [] },
-      })
-      await user.save()
-    }
+    // const candidate = await User.findOne()
+    // //якщо в нас нема користувачів то створюємо
+    // if (!candidate) {
+    //   const user = new User({
+    //     email: 'vasylhryts@knu.ua',
+    //     name: 'vasyl',
+    //     cart: { items: [] },
+    //   })
+    //   await user.save()
+    // }
     app.listen(PORT, () => {
       console.log(`Server has been listening on port ${PORT}`)
     })
