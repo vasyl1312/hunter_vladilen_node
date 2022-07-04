@@ -43,8 +43,11 @@ Part `Authorization and session`
 1. Login page(materialize), routes
 2. Add session, hidding pages for non- auth user and show for auth
 3. Save session, delete our temporary user
+4. Session in DB, hidding buttons 'edit' 'buy' for non-authenticated user
+
+---
 
 Part `For future pet-project`
 
-1. Bugs in order to show date, count and price
-2. Add info about ownwer of shop
+a. Bugs in order to show date, count and price
+b. Add info about ownwer of shop
