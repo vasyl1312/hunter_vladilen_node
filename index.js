@@ -13,6 +13,7 @@ const ordersRoutes = require('./routes/orders')
 const authRoutes = require('./routes/auth')
 const User = require('./models/user')
 const varMiddlware = require('./middleware/variables')
+const userMiddlware = require('./middleware/user')
 const MONGODB_URI = `mongodb+srv://vasyl:Vasyl2002@cluster0.llaredl.mongodb.net/shop`
 const PORT = process.env.PORT || 3000
 
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public'))) //щоб зробити 
 app.use(express.urlencoded({ extended: true }))
 app.use(session({ secret: 'some secret value', resave: false, saveUninitialized: false, store }))
 app.use(varMiddlware)
+app.use(userMiddlware)
 
 app.use('/', homeRoutes) //щоб використовувати усі наші роути
 app.use('/add', addRoutes)

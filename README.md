@@ -45,6 +45,7 @@ Part `Authorization and session`
 3. Save session, delete our temporary user
 4. Session in DB, hidding buttons 'edit' 'buy' for non-authenticated user
 5. Secure routes(when user is'n auth, he can type routes and it will work => fix it)
+6. Work with cart bugs
 
 ---
 
