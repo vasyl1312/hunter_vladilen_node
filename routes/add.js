@@ -1,8 +1,9 @@
 const { Router } = require('express')
 const Course = require('../models/course')
+const auth = require('../middleware/auth') //якщо користувач зареєстрований то доступні роути
 const router = Router()
 
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
   res.render('add', {
     title: 'Додати',
     isAdd: true, //для підсвітки коли на цій сторінці
@@ -10,7 +11,7 @@ router.get('/', (req, res) => {
 })
 
 //щоб проробити результат після надсилання нового курсу
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   const course = new Course({
     title: req.body.title,
     price: req.body.price,

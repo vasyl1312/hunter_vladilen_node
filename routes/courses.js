@@ -1,9 +1,10 @@
 const { Router } = require('express')
 const Course = require('../models/course')
+const auth = require('../middleware/auth') //якщо користувач зареєстрований то доступні роути
 const router = Router()
 
 router.get('/', async (req, res) => {
-  const courses = await Course.find()
+  const courses = await Course.find() //тут ми список курсів
     .populate('userId', 'email name') //populate отримуємо(а select певні)дані про user
     .select('price title img')
   console.log(courses)
@@ -16,7 +17,7 @@ router.get('/', async (req, res) => {
 })
 
 //для редагування курсів переходимо на саму сторінку
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', auth, async (req, res) => {
   //allow потім для розподілу між клієнтом і власником
   if (!req.query.allow) return res.redirect('/')
 
@@ -26,7 +27,7 @@ router.get('/:id/edit', async (req, res) => {
 })
 
 //тут редагування
-router.post('/edit', async (req, res) => {
+router.post('/edit', auth, async (req, res) => {
   const { id } = req.body //забираємо нижнє _ щоб було не _id а id
   delete req.body.id
   await Course.findByIdAndUpdate(id, req.body)
@@ -34,7 +35,7 @@ router.post('/edit', async (req, res) => {
 })
 
 //видалити курс
-router.post('/remove', async (req, res) => {
+router.post('/remove', auth, async (req, res) => {
   try {
     await Course.deleteOne({ _id: req.body.id })
     res.redirect('/courses')
