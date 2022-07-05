@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const bcrypt = require('bcryptjs')
 const User = require('../models/user')
 const router = new Router()
 
@@ -21,7 +22,7 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body
     const candidate = await User.findOne({ email }) //перевірка по email чи існує в нас такий користувач
     if (candidate) {
-      const areSame = password === candidate.password //перевірка чи співпадають паролі
+      const areSame = await bcrypt.compare(password, candidate.password) //перевірка чи співпадають паролі
       if (areSame) {
         req.session.user = candidate //додаємо користувача якщо все ок
         req.session.isAuthenticated = true // для того щоб деякі могли міняти контент а деякі не мають дозволу
@@ -49,11 +50,13 @@ router.post('/register', async (req, res) => {
     if (candidate) {
       res.redirect('/auth/login#register')
     } else {
+      //шифруємо пароль коли реєструємось, 10 це ніби рівень шифрування чим більше тим важче і довше
+      const hashPassword = await bcrypt.hash(password, 10)
       //якщо користувача нема то реємтруємо його
       const user = new User({
         email,
         name,
-        password,
+        password: hashPassword,
         cart: { items: [] },
       })
       await user.save()
