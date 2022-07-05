@@ -46,6 +46,7 @@ Part `Authorization and session`
 4. Session in DB, hidding buttons 'edit' 'buy' for non-authenticated user
 5. Secure routes(when user is'n auth, he can type routes and it will work => fix it)
 6. Work with cart bugs
+7. User registration
 
 ---
 
@@ -53,3 +54,4 @@ Part `For future pet-project`
 
 - Bugs in order to show date, count and price
 - Add info about ownwer of shop
+- Send letter about site to email when user done registration

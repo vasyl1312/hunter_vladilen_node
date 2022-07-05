@@ -2,7 +2,8 @@ const { Schema, model } = require('mongoose')
 
 const userSchema = new Schema({
   email: { type: String, required: true },
-  name: { type: String, required: true },
+  name: String,
+  password: { type: String, required: true },
   cart: {
     //щоб для кожного користувача зберігалась його корзина
     items: [
