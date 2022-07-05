@@ -17,15 +17,29 @@ router.get('/logout', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
-  const user = await User.findById('62bc2d54befb8d1927cb5214') //чекаємо певного користувача
-  req.session.user = user //додаємо користувача
-  req.session.isAuthenticated = true // для того щоб деякі могли міняти контент а деякі не мають дозволу
-  req.session.save((err) => {
-    if (err) {
-      throw err
+  try {
+    const { email, password } = req.body
+    const candidate = await User.findOne({ email }) //перевірка по email чи існує в нас такий користувач
+    if (candidate) {
+      const areSame = password === candidate.password //перевірка чи співпадають паролі
+      if (areSame) {
+        req.session.user = candidate //додаємо користувача якщо все ок
+        req.session.isAuthenticated = true // для того щоб деякі могли міняти контент а деякі не мають дозволу
+        req.session.save((err) => {
+          if (err) {
+            throw err
+          }
+          res.redirect('/')
+        })
+      } else {
+        res.redirect('/auth/login#login')
+      }
+    } else {
+      res.redirect('/auth/login#login')
     }
-    res.redirect('/')
-  })
+  } catch (e) {
+    console.log(e)
+  }
 })
 
 router.post('/register', async (req, res) => {

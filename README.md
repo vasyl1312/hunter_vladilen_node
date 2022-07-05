@@ -47,6 +47,7 @@ Part `Authorization and session`
 5. Secure routes(when user is'n auth, he can type routes and it will work => fix it)
 6. Work with cart bugs
 7. User registration
+8. Login user, non-temporary user from code => data from register, check password, email
 
 ---
 
