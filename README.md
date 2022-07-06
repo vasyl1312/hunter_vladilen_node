@@ -49,6 +49,7 @@ Part `Authorization and session`
 7. User registration
 8. Login user, non-temporary user from code => data from register, check password, email
 9. Password Encryption
+10. Add CSRF-security to all post requests
 
 ---
 

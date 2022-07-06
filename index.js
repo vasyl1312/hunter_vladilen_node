@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const csrf = require('csurf')
 const mongoose = require('mongoose')
 const exhbs = require('express-handlebars')
 const session = require('express-session')
@@ -39,6 +40,7 @@ app.set('views', 'views')
 app.use(express.static(path.join(__dirname, 'public'))) //щоб зробити папку статичною і її експрес бачив
 app.use(express.urlencoded({ extended: true }))
 app.use(session({ secret: 'some secret value', resave: false, saveUninitialized: false, store }))
+app.use(csrf())
 app.use(varMiddlware)
 app.use(userMiddlware)
 
