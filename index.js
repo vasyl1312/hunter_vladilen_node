@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const csrf = require('csurf')
+const flash = require('connect-flash')
 const mongoose = require('mongoose')
 const exhbs = require('express-handlebars')
 const session = require('express-session')
@@ -12,7 +13,6 @@ const cardRoutes = require('./routes/card')
 const coursesRoutes = require('./routes/courses')
 const ordersRoutes = require('./routes/orders')
 const authRoutes = require('./routes/auth')
-const User = require('./models/user')
 const varMiddlware = require('./middleware/variables')
 const userMiddlware = require('./middleware/user')
 const MONGODB_URI = `mongodb+srv://vasyl:Vasyl2002@cluster0.llaredl.mongodb.net/shop`
@@ -41,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public'))) //щоб зробити 
 app.use(express.urlencoded({ extended: true }))
 app.use(session({ secret: 'some secret value', resave: false, saveUninitialized: false, store }))
 app.use(csrf())
+app.use(flash())
 app.use(varMiddlware)
 app.use(userMiddlware)
 

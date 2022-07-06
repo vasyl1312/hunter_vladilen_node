@@ -7,6 +7,8 @@ router.get('/login', async (req, res) => {
   res.render('auth/login', {
     title: 'Авторизація',
     isLogin: true,
+    loginError: req.flash('loginError'),
+    registerError: req.flash('registerError'),
   })
 })
 
@@ -33,9 +35,11 @@ router.post('/login', async (req, res) => {
           res.redirect('/')
         })
       } else {
+        req.flash('loginError', 'Неправильний пароль')
         res.redirect('/auth/login#login')
       }
     } else {
+      req.flash('loginError', 'Такого користувача не існує') //коли при вході вводять не той email
       res.redirect('/auth/login#login')
     }
   } catch (e) {
@@ -48,6 +52,7 @@ router.post('/register', async (req, res) => {
     const { email, password, repeat, name } = req.body //створюємо користувача по даних з форми
     const candidate = await User.findOne({ email }) //перевірка чи існує користувач з таким email
     if (candidate) {
+      req.flash('registerError', 'Користувач з таким email вже існує') //якщо такий email вже є то кажемо
       res.redirect('/auth/login#register')
     } else {
       //шифруємо пароль коли реєструємось, 10 це ніби рівень шифрування чим більше тим важче і довше
