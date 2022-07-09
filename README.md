@@ -52,6 +52,10 @@ Part `Authorization and session`
 10. Add CSRF-security to all post requests
 11. Alerts errors, for instance, check correct password, email and is already register email
 
+Part `Work with Email`
+
+1. Object configuration(create file with constants)
+
 ---
 
 Part `For future pet-project`

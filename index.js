@@ -15,7 +15,7 @@ const ordersRoutes = require('./routes/orders')
 const authRoutes = require('./routes/auth')
 const varMiddlware = require('./middleware/variables')
 const userMiddlware = require('./middleware/user')
-const MONGODB_URI = `mongodb+srv://vasyl:Vasyl2002@cluster0.llaredl.mongodb.net/shop`
+const keys = require('./keys')
 const PORT = process.env.PORT || 3000
 
 const app = express()
@@ -30,7 +30,7 @@ const hbs = exhbs.create({
 
 const store = new MongoStore({
   collection: 'sessions',
-  uri: MONGODB_URI,
+  uri: keys.MONGODB_URI,
 })
 
 app.engine('hbs', hbs.engine) //щоб зареєструвати як движок для html-сторінок
@@ -39,7 +39,7 @@ app.set('views', 'views')
 
 app.use(express.static(path.join(__dirname, 'public'))) //щоб зробити папку статичною і її експрес бачив
 app.use(express.urlencoded({ extended: true }))
-app.use(session({ secret: 'some secret value', resave: false, saveUninitialized: false, store }))
+app.use(session({ secret: keys.SESSION_SECRET, resave: false, saveUninitialized: false, store }))
 app.use(csrf())
 app.use(flash())
 app.use(varMiddlware)
@@ -54,7 +54,7 @@ app.use('/auth', authRoutes)
 
 async function start() {
   try {
-    await mongoose.connect(MONGODB_URI)
+    await mongoose.connect(keys.MONGODB_URI)
     app.listen(PORT, () => {
       console.log(`Server has been listening on port ${PORT}`)
     })
