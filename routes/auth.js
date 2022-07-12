@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const bcrypt = require('bcryptjs')
 const User = require('../models/user')
-const keys = require('../keys')
+const keys = require('../keyss')
 const regEmail = require('../emails/registration')
 const router = new Router()
 const sgMail = require('@sendgrid/mail')
