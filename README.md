@@ -55,6 +55,7 @@ Part `Authorization and session`
 Part `Work with Email`
 
 1. Object configuration(create file with constants)
+2. Setting email service when user do a registration(sendgrid=>have to register in sendgrid, verify email, answer the questions for what you want to use sendgrid, create api key, verify sending-email, connect for node)
 
 ---
 

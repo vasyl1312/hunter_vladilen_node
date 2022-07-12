@@ -1,7 +1,10 @@
 const { Router } = require('express')
 const bcrypt = require('bcryptjs')
 const User = require('../models/user')
+const keys = require('../keys')
+const regEmail = require('../emails/registration')
 const router = new Router()
+const sgMail = require('@sendgrid/mail')
 
 router.get('/login', async (req, res) => {
   res.render('auth/login', {
@@ -57,15 +60,19 @@ router.post('/register', async (req, res) => {
     } else {
       //шифруємо пароль коли реєструємось, 10 це ніби рівень шифрування чим більше тим важче і довше
       const hashPassword = await bcrypt.hash(password, 10)
-      //якщо користувача нема то реємтруємо його
+      //якщо користувача нема то реєcтруємо його
       const user = new User({
         email,
         name,
         password: hashPassword,
         cart: { items: [] },
       })
+      sgMail.setApiKey(keys.API_KEY) //транспортер для відправлення по апі ключу сенд гріда емейл
       await user.save()
       res.redirect('/auth/login#login')
+      await sgMail.send(regEmail(email)).catch((error) => {
+        console.error(error)
+      })
     }
   } catch (e) {
     console.log(e)

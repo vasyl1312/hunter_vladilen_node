@@ -2,10 +2,10 @@
   "name": "hunter_vladilen_node",
   "version": "1.0.0",
   "description": "1.",
-  "main": "index.js",
+  "main": "index",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "repository": {
     "type": "git",
@@ -22,14 +22,18 @@
     "nodemon": "^2.0.16"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^3.1.1",
     "csurf": "^1.11.0",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
     "mongoose": "^6.4.0",
+    "nodemailer": "^6.7.7",
+    "nodemailer-sendgrid-transport": "^0.2.0",
     "uuid": "^8.3.2"
   }
 }
