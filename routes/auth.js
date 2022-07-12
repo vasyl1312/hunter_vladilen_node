@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const bcrypt = require('bcryptjs')
 const User = require('../models/user')
-const keys = require('../keyss')
+const keyss = require('../keyss')
 const regEmail = require('../emails/registration')
 const router = new Router()
 const sgMail = require('@sendgrid/mail')
@@ -67,7 +67,7 @@ router.post('/register', async (req, res) => {
         password: hashPassword,
         cart: { items: [] },
       })
-      sgMail.setApiKey(keys.API_KEY) //транспортер для відправлення по апі ключу сенд гріда емейл
+      sgMail.setApiKey(keyss.API_KEY) //транспортер для відправлення по апі ключу сенд гріда емейл
       await user.save()
       res.redirect('/auth/login#login')
       await sgMail.send(regEmail(email)).catch((error) => {

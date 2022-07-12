@@ -15,7 +15,8 @@ const ordersRoutes = require('./routes/orders')
 const authRoutes = require('./routes/auth')
 const varMiddlware = require('./middleware/variables')
 const userMiddlware = require('./middleware/user')
-const keys = require('./keyss')
+const keyss = require('./keyss')
+const keys = require('./keys')
 const PORT = process.env.PORT || 3000
 
 const app = express()
