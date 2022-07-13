@@ -4,6 +4,8 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   name: String,
   password: { type: String, required: true },
+  resetToken: String,
+  resetTokenExp: Date,
   cart: {
     //щоб для кожного користувача зберігалась його корзина
     items: [

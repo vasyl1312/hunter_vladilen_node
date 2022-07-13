@@ -9,7 +9,9 @@ module.exports = function (email) {
       <h1>Ласкаво просимо у наш магазин</h1>
       <p>Ви успішно створили акаунт з email - ${email}</p>
       <hr />
-      <a href="${keys.BASE_URL}">Магазин курсів</a>
+      <p>Перейти на сайт:
+        <a href="${keys.BASE_URL}">Магазин курсів</a>
+      </p>
     `,
   }
 }
