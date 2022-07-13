@@ -12,7 +12,9 @@ module.exports = function (email, token) {
         <a href="${keys.BASE_URL}/auth/password/${token}">Відновити доступ</a>    
       </p>
       <hr />
-      <a href="${keys.BASE_URL}">Магазин курсів</a>
+      <p>Перейти на сайт:
+        <a href="${keys.BASE_URL}">Магазин курсів</a>
+      </p>
     `,
   }
 }

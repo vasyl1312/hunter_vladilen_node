@@ -83,7 +83,7 @@ router.post('/register', async (req, res) => {
 
 router.get('/reset', (req, res) => {
   res.render('auth/reset', {
-    title: 'Забулт пароль?',
+    title: 'Забули пароль?',
     error: req.flash('error'),
   })
 })
@@ -114,6 +114,33 @@ router.post('/reset', (req, res) => {
     }
   })
   try {
+  } catch (e) {
+    console.log(e)
+  }
+})
+
+router.get('/password/:token', async (req, res) => {
+  if (!req.params.token) {
+    return res.redirect('/auth/login')
+  }
+
+  try {
+    const user = await User.findOne({
+      resetToken: req.params.token,
+      resetTokenExp: { $gt: Date.now() }, //перевірка чи час життя токена не сплинув
+    }) //шукаємо користувача з таким токеном
+
+    if (!user) {
+      //якщо користувача не знайдено з токеном або час сплинув то все
+      return res.redirect('/auth/login')
+    } else {
+      res.render('auth/password', {
+        title: 'Оновити пароль',
+        error: req.flash('error'),
+        userId: user._id.toString(),
+        token: req.params.token,
+      })
+    }
   } catch (e) {
     console.log(e)
   }
