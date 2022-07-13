@@ -58,6 +58,7 @@ Part `Work with Email`
 2. Setting email service when user do a registration(sendgrid=>have to register in sendgrid, verify email, answer the questions for what you want to use sendgrid, create api key, verify sending-email, connect for node)
 3. Password recovery(when login page add button forgot a password); add btn, check email in db, generate a random key, send message to email for reset password
 4. Add page for new password(add route, when we have to reset password)
+5. Changing password(check user, token, hash new password)
 
 ---
 
@@ -66,3 +67,4 @@ Part `For future pet-project`
 - Bugs in order to show date, count and price
 - Add info about ownwer of shop
 - Send letter about site to email when user done registration
+- Bugs whit userId in console when login

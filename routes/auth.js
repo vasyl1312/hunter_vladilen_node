@@ -89,31 +89,31 @@ router.get('/reset', (req, res) => {
 })
 
 router.post('/reset', (req, res) => {
-  //для самого скидання паролю(генеруємо рандом ключ і відправляємо на пошту користувачу якщо він за певний час перейде по посиланню і введе той код то можна ввести новий пароль)
-  crypto.randomBytes(32, async (err, buffer) => {
-    if (err) {
-      req.flash('error', 'Щось пішло не так, спробуйте згодом...')
-      return res.redirect('/auth/reset')
-    }
-
-    const token = buffer.toString('hex')
-    const candidate = await User.findOne({ email: req.body.email }) //перевіряємо чи введений емейл є в базі
-
-    if (candidate) {
-      candidate.resetToken = token
-      candidate.resetTokenExp = Date.now() + 60 * 60 * 1000 //1год буде жити токен
-      await candidate.save()
-      //і відсилаємо йому на email лист
-      await sgMail.send(resetEmail(candidate.email, token)).catch((error) => {
-        console.error(error)
-      })
-      res.redirect('/auth/login')
-    } else {
-      req.flash('error', 'Введеного email немає в базі, перевірте ще раз')
-      res.redirect('/auth/reset')
-    }
-  })
   try {
+    //для самого скидання паролю(генеруємо рандом ключ і відправляємо на пошту користувачу якщо він за певний час перейде по посиланню і введе той код то можна ввести новий пароль)
+    crypto.randomBytes(32, async (err, buffer) => {
+      if (err) {
+        req.flash('error', 'Щось пішло не так, спробуйте згодом...')
+        return res.redirect('/auth/reset')
+      }
+
+      const token = buffer.toString('hex')
+      const candidate = await User.findOne({ email: req.body.email }) //перевіряємо чи введений емейл є в базі
+
+      if (candidate) {
+        candidate.resetToken = token
+        candidate.resetTokenExp = Date.now() + 60 * 60 * 1000 //1год буде жити токен
+        await candidate.save()
+        //і відсилаємо йому на email лист
+        await sgMail.send(resetEmail(candidate.email, token)).catch((error) => {
+          console.error(error)
+        })
+        res.redirect('/auth/login')
+      } else {
+        req.flash('error', 'Введеного email немає в базі, перевірте ще раз')
+        res.redirect('/auth/reset')
+      }
+    })
   } catch (e) {
     console.log(e)
   }
@@ -140,6 +140,29 @@ router.get('/password/:token', async (req, res) => {
         userId: user._id.toString(),
         token: req.params.token,
       })
+    }
+  } catch (e) {
+    console.log(e)
+  }
+})
+
+router.post('/password', async (req, res) => {
+  try {
+    const user = await User.findOne({
+      _id: req.body.userId,
+      resetToken: req.body.token,
+      resetTokenExp: { $gt: Date.now() },
+    }) //перевірка користувача
+
+    if (user) {
+      user.password = await bcrypt.hash(req.body.password, 10) //якщо користувача знайдено то міняємо пароль
+      user.resetToken = undefined //видаляємо всі дані токена відновлення
+      user.resetTokenExp = undefined
+      await user.save()
+      res.redirect('/auth/login')
+    } else {
+      req.flash('loginError', 'Час життя токена вичерпано')
+      res.redirect('/auth/login')
     }
   } catch (e) {
     console.log(e)
