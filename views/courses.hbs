@@ -16,8 +16,12 @@
             <a href='/courses/{{id}}' target='_blank'>Відкрити курс</a>
             {{! @root щоб дістатися до корневого елемента бо each перекриває(вихід з each і доступ до елем)}}
             {{#if @root.isAuth}}
-              {{! allow для розподіл між клієнтом і власником }}
-              <a href='/courses/{{id}}/edit?allow=true'>Редагувати</a>
+
+              {{#ifeq userId._id @root.userId}}
+                {{! allow для розподіл між клієнтом і власником }}
+                <a href='/courses/{{id}}/edit?allow=true'>Редагувати</a>
+              {{/ifeq}}
+
               <form action='/card/add' method='POST'>
                 <input type='hidden' name='_csrf' value='{{@root.csrf}}' />
                 {{! Передаємо id щоб знати який курс додаємо в кошик}}

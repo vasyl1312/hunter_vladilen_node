@@ -23,6 +23,7 @@ const app = express()
 const hbs = exhbs.create({
   extname: 'hbs',
   defaultLayout: 'main',
+  helpers: require('./utils/hbs-helpers'),
   runtimeOptions: {
     allowProtoPropertiesByDefault: true,
     allowProtoMethodsByDefault: true,
