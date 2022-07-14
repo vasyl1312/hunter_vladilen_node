@@ -56,35 +56,28 @@ router.post('/login', async (req, res) => {
 
 router.post('/register', registerValidator, async (req, res) => {
   try {
-    const { email, password, confirm, name } = req.body //створюємо користувача по даних з форми
-    const candidate = await User.findOne({ email }) //перевірка чи існує користувач з таким email
+    const { email, password, name } = req.body //створюємо користувача по даних з форми
 
     const errors = validationResult(req) //якщо є помилки валідації то вивожимо
     if (!errors.isEmpty()) {
       req.flash('registerError', errors.array()[0].msg)
       return res.status(422).redirect('/auth/login#register')
     }
-
-    if (candidate) {
-      req.flash('registerError', 'Користувач з таким email вже існує') //якщо такий email вже є то кажемо
-      res.redirect('/auth/login#register')
-    } else {
-      //шифруємо пароль коли реєструємось, 10 це ніби рівень шифрування чим більше тим важче і довше
-      const hashPassword = await bcrypt.hash(password, 10)
-      //якщо користувача нема то реєcтруємо його
-      const user = new User({
-        email,
-        name,
-        password: hashPassword,
-        cart: { items: [] },
-      })
-      sgMail.setApiKey(keyss.API_KEY) //транспортер для відправлення по апі ключу сенд гріда емейл
-      await user.save()
-      res.redirect('/auth/login#login')
-      await sgMail.send(regEmail(email)).catch((error) => {
-        console.error(error)
-      })
-    }
+    //шифруємо пароль коли реєструємось, 10 це ніби рівень шифрування чим більше тим важче і довше
+    const hashPassword = await bcrypt.hash(password, 10)
+    //якщо користувача нема то реєcтруємо його
+    const user = new User({
+      email,
+      name,
+      password: hashPassword,
+      cart: { items: [] },
+    })
+    sgMail.setApiKey(keyss.API_KEY) //транспортер для відправлення по апі ключу сенд гріда емейл
+    await user.save()
+    res.redirect('/auth/login#login')
+    await sgMail.send(regEmail(email)).catch((error) => {
+      console.error(error)
+    })
   } catch (e) {
     console.log(e)
   }

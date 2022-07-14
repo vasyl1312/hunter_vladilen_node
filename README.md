@@ -65,6 +65,7 @@ Part `Validations and files`
 
 1. Basic validation(checking email isEmail(not like a word))
 2. Validation registration; and create file for all validator(name, email, password, and repeat password)
+3. Async validation(checking on existing email and add check to file with all validators)
 
 ---
 
