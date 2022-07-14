@@ -1,13 +1,14 @@
 const { Router } = require('express')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto') //для рандом
-const { body, validationResult } = require('express-validator/check')
+const { validationResult } = require('express-validator/check')
 const User = require('../models/user')
 const keyss = require('../keyss')
 const regEmail = require('../emails/registration')
 const resetEmail = require('../emails/reset')
 const router = new Router()
 const sgMail = require('@sendgrid/mail')
+const { registerValidator } = require('../utils/validators')
 
 router.get('/login', async (req, res) => {
   res.render('auth/login', {
@@ -53,7 +54,7 @@ router.post('/login', async (req, res) => {
   }
 })
 
-router.post('/register', body('email').isEmail(), async (req, res) => {
+router.post('/register', registerValidator, async (req, res) => {
   try {
     const { email, password, confirm, name } = req.body //створюємо користувача по даних з форми
     const candidate = await User.findOne({ email }) //перевірка чи існує користувач з таким email
