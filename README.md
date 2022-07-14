@@ -61,6 +61,10 @@ Part `Work with Email`
 5. Changing password(check user, token, hash new password)
 6. When user add course, and for another user hide button edit; create in hbs thingy in if(===); secure delete; add try catch in course.js
 
+Part `Validations and files`
+
+1. Basic validation(checking email isEmail(not like a word))
+
 ---
 
 Part `For future pet-project`
