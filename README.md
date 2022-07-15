@@ -68,6 +68,7 @@ Part `Validations and files`
 3. Async validation(checking on existing email and add check to file with all validators)
 4. Updating data(cut spaces in password and name)
 5. Validation courses(add course, and when we have uncorrect input - don`t clear another inputs)
+6. Error 404(when we input unexisted route)
 
 ---
 

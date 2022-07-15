@@ -13,9 +13,9 @@ const cardRoutes = require('./routes/card')
 const coursesRoutes = require('./routes/courses')
 const ordersRoutes = require('./routes/orders')
 const authRoutes = require('./routes/auth')
-const varMiddlware = require('./middleware/variables')
-const userMiddlware = require('./middleware/user')
-const keyss = require('./keyss')
+const varMiddleware = require('./middleware/variables')
+const userMiddleware = require('./middleware/user')
+const errorMiddleware = require('./middleware/error')
 const keys = require('./keys')
 const PORT = process.env.PORT || 3000
 
@@ -44,8 +44,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(session({ secret: keys.SESSION_SECRET, resave: false, saveUninitialized: false, store }))
 app.use(csrf())
 app.use(flash())
-app.use(varMiddlware)
-app.use(userMiddlware)
+app.use(varMiddleware)
+app.use(userMiddleware)
 
 app.use('/', homeRoutes) //щоб використовувати усі наші роути
 app.use('/add', addRoutes)
@@ -53,6 +53,8 @@ app.use('/courses', coursesRoutes)
 app.use('/card', cardRoutes)
 app.use('/orders', ordersRoutes)
 app.use('/auth', authRoutes)
+
+app.use(errorMiddleware) //вкінці бо деякі роути будуть не доступні
 
 async function start() {
   try {
