@@ -69,12 +69,13 @@ Part `Validations and files`
 4. Updating data(cut spaces in password and name)
 5. Validation courses(add course, and when we have uncorrect input - don`t clear another inputs)
 6. Error 404(when we input unexisted route)
+7. Create profile page(routes, navbar, page, upload avatar)
 
 ---
 
 Part `For future pet-project`
 
 - Bugs in order to show date, count and price
-- Add info about ownwer of shop
+- Add info in main page '/'
 - Send letter about site to email when user done registration
 - Bugs whit userId in console when login

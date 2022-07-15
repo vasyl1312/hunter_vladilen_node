@@ -1,0 +1,32 @@
+<h1>Профіль</h1>
+
+<div class='row'>
+  <div class='col-s6'>
+    <img class='avatar' src='https://i.ibb.co/dkyFvhZ/photo-2022-07-15-14-48-44.jpg' alt='' />
+    <p>Аватарки немає</p>
+  </div>
+
+  <div class='col-s6'>
+    <form action='/profile' method='POST'>
+      <p>Ваш email: <strong>{{user.email}}</strong></p>
+
+      <div class='input-field'>
+        <input id='name' name='name' type='text' class='validate' required value='{{user.name}}' />
+        <label for='name'>Ваше ім`я</label>
+        <span class='helper-text' data-error='Ім`я не може бути пустим'> </span>
+      </div>
+
+      <div class='file-field input-field'>
+        <div class='btn'>
+          <span>Аватар</span>
+          <input type='file' name='avatar' />
+        </div>
+        <div class='file-path-wrapper'>
+          <input class='file-path validate' type='text' />
+        </div>
+      </div>
+      <input type='hidden' name='_csrf' value='{{csrf}}' />
+      <button type='submit' class='btn'>Змінити</button>
+    </form>
+  </div>
+</div>

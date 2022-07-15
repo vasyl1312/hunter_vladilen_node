@@ -33,9 +33,16 @@
         {{else}}
           <li> <a href='/orders'>Замовлення</a> </li>
         {{/if}}
+        
+         {{#if isProfile}}
+          <li class='active'> <a href='/profile'>Профіль</a> </li>
+        {{else}}
+          <li> <a href='/profile'>Профіль</a> </li>
+        {{/if}}
 
         <li><a href='/auth/logout'>Вийти</a>li>
       {{else}}
+
         {{#if isLogin}}
           <li class='active'> <a href='/auth/login#login'>Увійти</a> </li>
         {{else}}
