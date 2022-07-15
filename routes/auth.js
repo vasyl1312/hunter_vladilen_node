@@ -8,7 +8,7 @@ const regEmail = require('../emails/registration')
 const resetEmail = require('../emails/reset')
 const router = new Router()
 const sgMail = require('@sendgrid/mail')
-const { registerValidator } = require('../utils/validators')
+const { registerValidators } = require('../utils/validators')
 
 router.get('/login', async (req, res) => {
   res.render('auth/login', {
@@ -54,7 +54,7 @@ router.post('/login', async (req, res) => {
   }
 })
 
-router.post('/register', registerValidator, async (req, res) => {
+router.post('/register', registerValidators, async (req, res) => {
   try {
     const { email, password, name } = req.body //створюємо користувача по даних з форми
 

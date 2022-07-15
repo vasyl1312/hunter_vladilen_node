@@ -1,20 +1,32 @@
 <h1>Додати новий курс</h1>
 
-<form action='/add' method='POST'>
+{{#if error}}
+  <p class='alert'>{{error}}</p>
+{{/if}}
+
+<form action='/add' method='POST' novalidate>
   <div class='input-field'>
-    <input id='title' name='title' type='text' class='validate' required />
+    <input id='title' name='title' type='text' class='validate' required value='{{data.title}}' />
     <label for='title'>Назва курсу</label>
     <span class='helper-text' data-error='Введіть назву'> </span>
   </div>
 
   <div class='input-field'>
-    <input id='price' name='price' type='text' class='validate' required min='1' />
+    <input
+      id='price'
+      name='price'
+      type='text'
+      class='validate'
+      required
+      min='1'
+      value='{{data.price}}'
+    />
     <label for='price'>Ціна цього курсу</label>
     <span class='helper-text' data-error='Введіть ціну без пробілів'> </span>
   </div>
 
   <div class='input-field'>
-    <input id='img' name='img' type='text' class='validate' required />
+    <input id='img' name='img' type='text' class='validate' required value='{{data.img}}' />
     <label for='img'>URL картинки курсу</label>
     <span class='helper-text' data-error='Введіть URL картинки'> </span>
   </div>

@@ -1,6 +1,8 @@
 const { Router } = require('express')
+const { validationResult } = require('express-validator/check')
 const Course = require('../models/course')
 const auth = require('../middleware/auth') //якщо користувач зареєстрований то доступні роути
+const { courseValidators } = require('../utils/validators')
 const router = Router()
 
 //функція для розподілу, якщо користувач створив курс то редагує - інші перегляд і придбання
@@ -44,9 +46,14 @@ router.get('/:id/edit', auth, async (req, res) => {
 })
 
 //тут редагування
-router.post('/edit', auth, async (req, res) => {
+router.post('/edit', auth, courseValidators, async (req, res) => {
+  const errors = validationResult(req)
+  const { id } = req.body //забираємо нижнє _ щоб було не _id а id
+  if (!errors.isEmpty()) {
+    return res.status(422).redirect(`/courses/${id}/edit?allow=true`)
+  }
+
   try {
-    const { id } = req.body //забираємо нижнє _ щоб було не _id а id
     delete req.body.id
     const course = await Course.findById(id)
     if (!isOwner(course, req)) {
