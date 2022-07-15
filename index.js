@@ -17,6 +17,7 @@ const profileRoutes = require('./routes/profile')
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
 const errorMiddleware = require('./middleware/error')
+const fileMiddleware = require('./middleware/file')
 const keys = require('./keys')
 const PORT = process.env.PORT || 3000
 
@@ -43,6 +44,8 @@ app.set('views', 'views')
 app.use(express.static(path.join(__dirname, 'public'))) //щоб зробити папку статичною і її експрес бачив
 app.use(express.urlencoded({ extended: true }))
 app.use(session({ secret: keys.SESSION_SECRET, resave: false, saveUninitialized: false, store }))
+
+app.use(fileMiddleware.single('avatar'))
 app.use(csrf())
 app.use(flash())
 app.use(varMiddleware)

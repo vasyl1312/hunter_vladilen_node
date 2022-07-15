@@ -70,6 +70,7 @@ Part `Validations and files`
 5. Validation courses(add course, and when we have uncorrect input - don`t clear another inputs)
 6. Error 404(when we input unexisted route)
 7. Create profile page(routes, navbar, page, upload avatar)
+8. Setting upload files(add multer)
 
 ---
 
