@@ -42,6 +42,7 @@ app.set('view engine', 'hbs') //а тут ми цей движок викори�
 app.set('views', 'views')
 
 app.use(express.static(path.join(__dirname, 'public'))) //щоб зробити папку статичною і її експрес бачив
+app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use(express.urlencoded({ extended: true }))
 app.use(session({ secret: keys.SESSION_SECRET, resave: false, saveUninitialized: false, store }))
 

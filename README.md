@@ -71,6 +71,7 @@ Part `Validations and files`
 6. Error 404(when we input unexisted route)
 7. Create profile page(routes, navbar, page, upload avatar)
 8. Setting upload files(add multer)
+9. Uploading files(avatar)have some issues with enctype='multipart/form-data' maybe
 
 ---
 
