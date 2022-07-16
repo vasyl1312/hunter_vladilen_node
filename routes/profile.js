@@ -19,7 +19,7 @@ router.post('/', auth, async (req, res) => {
       name: req.body.name,
     }
 
-    console.log(req.file)
+    //console.log(req.file)
     //req.file undefined ????????/multer error or enctype='multipart/form-data
     if (req.file) {
       toChange.avatarUrl = req.file.path

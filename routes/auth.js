@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const crypto = require('crypto') //для рандом
 const { validationResult } = require('express-validator/check')
 const User = require('../models/user')
-const keyss = require('../keyss')
+const keys = require('../keys')
 const regEmail = require('../emails/registration')
 const resetEmail = require('../emails/reset')
 const router = new Router()
@@ -72,7 +72,7 @@ router.post('/register', registerValidators, async (req, res) => {
       password: hashPassword,
       cart: { items: [] },
     })
-    sgMail.setApiKey(keyss.API_KEY) //транспортер для відправлення по апі ключу сенд гріда емейл
+    sgMail.setApiKey(keys.API_KEY) //транспортер для відправлення по апі ключу сенд гріда емейл
     await user.save()
     res.redirect('/auth/login#login')
     await sgMail.send(regEmail(email)).catch((error) => {

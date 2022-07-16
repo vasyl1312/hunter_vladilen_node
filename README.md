@@ -73,6 +73,10 @@ Part `Validations and files`
 8. Setting upload files(add multer)
 9. Uploading files(avatar)have some issues with enctype='multipart/form-data' maybe
 
+Part `Deploy this project`
+
+1. Secure keys(for future deploy)
+
 ---
 
 Part `For future pet-project`
@@ -81,3 +85,4 @@ Part `For future pet-project`
 - Add info in main page '/'
 - Send letter about site to email when user done registration
 - Bugs whit userId in console when login
+- Bugs with uploading avatar
