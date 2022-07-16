@@ -78,6 +78,7 @@ Part `Deploy this project`
 1. Secure keys(for future deploy)
 2. Add headers(helmet in console network)
 3. Compression static file
+4. Preparing heroku(in terminal heroku login; heroku create; in heroku-site open project-settings-Config Vars-add all keys from keys.dev, base url=url from terminal created; commit all changes)
 
 ---
 
