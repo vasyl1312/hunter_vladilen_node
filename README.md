@@ -78,7 +78,7 @@ Part `Deploy this project`
 1. Secure keys(for future deploy)
 2. Add headers(helmet in console network)
 3. Compression static file
-4. Preparing heroku(in terminal heroku login; heroku create; in heroku-site open project-settings-Config Vars-add all keys from keys.dev, base url=url from terminal created; commit all changes; in terminal add heroku git row from page DEPLOY, git push heroku master )
+4. Preparing heroku(in terminal heroku login; heroku create; in heroku-site open project-settings-Config Vars-add all keys from keys.dev, base url=url from terminal created; commit all changes; in terminal add heroku git row from page DEPLOY and all rows after this, git push heroku main)
 
 ---
 
@@ -88,3 +88,4 @@ Part `For future pet-project`
 - Add info in main page '/'
 - Bugs with uploading avatar
 - Send email when user finished his order
+- After pushing heroku img error, when register send another mail
