@@ -76,6 +76,8 @@ Part `Validations and files`
 Part `Deploy this project`
 
 1. Secure keys(for future deploy)
+2. Add headers(helmet in console network)
+3. Compression static file
 
 ---
 
@@ -83,6 +85,5 @@ Part `For future pet-project`
 
 - Bugs in order to show date, count and price
 - Add info in main page '/'
-- Send letter about site to email when user done registration
-- Bugs whit userId in console when login
 - Bugs with uploading avatar
+- Send email when user finished his order
